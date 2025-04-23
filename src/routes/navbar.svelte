@@ -1,5 +1,52 @@
 <script></script>
 
-<h1>IMDB</h1>
+<nav>
+    <div class="navbar">
+        <ul>
+            <li><a href="/">IMDB</a></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="/randomise">Randomise</a></li>
+            <li><a href="/favorites">Favorites</a></li>
+            <li><a href="/signIn">Sign In</a></li>
+        </ul>
+    </div>
+</nav>
 
-<button></button>
+
+
+
+<!-- <li><a href="/about">About</a></li>  bootton of page-->
+
+<style>
+    nav {
+        background-color: #333;
+        color: white;
+        padding: 10px;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    li {
+        margin-right: 20px;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
