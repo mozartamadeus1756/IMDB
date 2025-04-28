@@ -15,9 +15,6 @@
 <!-- nedenfor viser tre randomme filmer fra apien !! -->
 
 
-
-<!-- <li><a href="/about">About</a></li>  bootton of page-->
-
 <style>
     nav {
         background-color: #333;

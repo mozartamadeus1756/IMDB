@@ -1,9 +1,11 @@
 <script>
   import Navbar from "./Navbar.svelte";
+  import BottomNav from "./BottomNav.svelte";
 
 </script>
 
 <Navbar />
+
 
 
 <div>
@@ -14,3 +16,4 @@
 
 
 
+<BottomNav />
