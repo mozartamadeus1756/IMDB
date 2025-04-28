@@ -12,9 +12,6 @@
     </div>
 </nav>
 
-<!-- nedenfor viser tre randomme filmer fra apien !! -->
-
-
 <style>
     nav {
         background-color: #333;
