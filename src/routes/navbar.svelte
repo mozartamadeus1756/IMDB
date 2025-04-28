@@ -7,7 +7,7 @@
             <li><a href="/search">Search</a></li>
             <li><a href="/randomise">Randomise</a></li>
             <li><a href="/favorites">Favorites</a></li>
-            <li><a href="/signIn">Sign In</a></li>
+            <li><a href="/register">Register</a></li>
         </ul>
     </div>
 </nav>
