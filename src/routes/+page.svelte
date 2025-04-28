@@ -1,7 +1,6 @@
 <script lang="ts">
   import Navbar from "./Navbar.svelte";
   import BottomNav from "./BottomNav.svelte";
-  import BackButton from "./BackButton.svelte";
   // Sample movie data - you can replace with your actual data
   const movies = [
     { title: "Movie of the day" },
@@ -12,7 +11,6 @@
 
 <Navbar />
 
-<BackButton />
 
 <div class="container">
   <div class="movie-grid">
