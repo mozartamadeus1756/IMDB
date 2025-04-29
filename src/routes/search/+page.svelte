@@ -36,6 +36,10 @@
       onChange("");
       inputElement.focus();
     }
+
+
+
+
   </script>
   
   <div class="search-bar-container" class:active={isActive}>
@@ -68,6 +72,9 @@
       {/if}
     </form>
   </div>
+
+
+  <div class="movie-content"></div>
   
   <style>
     .search-bar-container {
