@@ -1,5 +1,9 @@
 {
 	"extends": "./.svelte-kit/tsconfig.json",
+	"include": [
+		"src/**/*",
+		"!src/routes/login/register/+page.svelte"
+	],
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": false,
