@@ -18,7 +18,7 @@
                 const data = await response.json();
                 if (data.success) {
                     // localStorage.setItem('username', username);
-                    // window.location.href = 'joke.html';
+                    window.location.href = '/login';
                     alert('Login successful!');
                 } else {
                     alert('Login failed: ' + data.message);
