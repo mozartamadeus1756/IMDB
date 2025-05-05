@@ -6,7 +6,7 @@
             <li><a href="/">IMDB</a></li>
             <li><a href="/search">Search</a></li>
             <li><a href="/randomise">Randomise</a></li>
-            <li><a href="/register">Login</a></li>
+            <li><a href="/login">Login</a></li>
         </ul>
     </div>
 </nav>
