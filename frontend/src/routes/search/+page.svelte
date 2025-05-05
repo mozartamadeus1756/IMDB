@@ -1,4 +1,7 @@
 <script>
+
+  import BackButton from "../BackButton.svelte";
+
     let searchText = "";
     
     // skal connetcte noe til denne !! 
@@ -40,6 +43,8 @@
       );
     }
   </script>
+
+<BackButton />
   
   <main>
     <h1>Simple Movie Search</h1>
