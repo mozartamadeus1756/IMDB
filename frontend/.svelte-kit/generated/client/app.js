@@ -19,8 +19,8 @@ export const dictionary = {
 		"/about": [3],
 		"/favorites": [4],
 		"/login": [5],
-		"/login/register": [6],
-		"/randomise": [7],
+		"/randomise": [6],
+		"/register": [7],
 		"/search": [8]
 	};
 

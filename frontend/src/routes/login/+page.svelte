@@ -35,7 +35,7 @@
 <BackButton />
 
 <main class="login-container">
-    <h1>WELCOME!</h1>
+    <h1>Welcome back !!</h1>
     <form class="login-form" aria-labelledby="login-heading">
         <h2 id="login-heading" class="visually-hidden">Login Form</h2>
         <div class="form-group">
@@ -52,7 +52,7 @@
         </div>
         <button type="submit" class="login-btn" aria-label="Login to your account">Login</button>
     </form>
-    <p class="register-link">New here? <a href="register.html" class="register-btn" aria-label="Go to registration page">Register</a></p>
+    <p class="register-link">New here? <a href="/register" class="register-btn" aria-label="Go to registration page">Register</a></p>
 </main>
 
 <style>
