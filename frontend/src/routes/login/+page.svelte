@@ -18,7 +18,7 @@
                 const data = await response.json();
                 if (data.success) {
                     // localStorage.setItem('username', username);
-                    window.location.href = '/login';
+                    window.location.href = '/'; // Redirect to home page, change later to the main page !!!
                     alert('Login successful!');
                 } else {
                     alert('Login failed: ' + data.message);
