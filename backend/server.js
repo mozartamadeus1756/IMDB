@@ -6,7 +6,7 @@ const cors = require('cors');
 
 
 const app = express();
-const port = process.env.PORT || 5173;
+const port = 5001;
 
 const pool = mariadb.createPool({
     host: process.env.DB_HOST,
@@ -20,8 +20,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors()); 
 
+app.get('/', (req, res) => {
+    res.json('Backend server connection successful');
+});
+
 app.post('/register', async (req, res) => {
     let conn;
+    console.log('Received registration request:', req.body);
     try {
         const { username, email, password } = req.body;
   
@@ -42,6 +47,6 @@ app.post('/register', async (req, res) => {
 
 
 app.listen(port, () => {
-    console.log(`Server running!`); //  http://localhost:${port}
+    console.log(`Server running! http://localhost:${port}`); //  http://localhost:${port}
   });
   

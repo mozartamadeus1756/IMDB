@@ -1,5 +1,5 @@
 
-<script lang="ts">
+<script>
     // Simple navigation function for Svelte
     function goToMainPage() {
       window.location.href = "/";
