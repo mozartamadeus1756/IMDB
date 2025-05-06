@@ -17,7 +17,7 @@
             }
 
             try {
-                const response = await fetch('http://localhost:5173/register', {
+                const response = await fetch('http://localhost:5173/register', { // 200 !!!
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@
     });
 </script>
 
-<BackButton />
+<BackButton /> 
 
 
 <main class="register-container" >
