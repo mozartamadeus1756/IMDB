@@ -12,7 +12,7 @@
         }).catch(error => {
     console.log(error);
     return [];
-  });
+    });
 });
 </script>
 
