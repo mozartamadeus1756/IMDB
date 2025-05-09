@@ -3,6 +3,22 @@
     import BackButton from "../BackButton.svelte";
     import { onMount } from 'svelte';
     
+  let username = '';
+  let email = '';
+  let password = '';
+  let message = '';
+
+  async function registerUser() {
+    const response = await fetch('http://localhost:5001/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, email, password })
+    });
+
+    const data = await response.json();
+    message = data.message;
+  }
+
     onMount(async () => {
         fetch("http://localhost:5001")
         .then(response => response.json())
@@ -13,7 +29,7 @@
     console.log(error);
     return [];
     });
-});
+    });
 </script>
 
 <BackButton /> 
