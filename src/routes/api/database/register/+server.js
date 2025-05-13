@@ -1,7 +1,12 @@
 // Enhanced backend registration endpoint
-import { env } from '$env/dynamic/private';
+import { env } from '$env/dynamic/private'; // Import environment variables from SvelteKit
 import mariadb from 'mariadb';
 import bcrypt from 'bcrypt'; // You'll need to install this package
+import cors from 'cors'; // You'll need to install this package
+import express from 'express';
+import bodyParser from 'body-parser';
+
+const app = express();
 
 const pool = mariadb.createPool({
     host: env.DB_HOST,
@@ -11,11 +16,14 @@ const pool = mariadb.createPool({
     connectionLimit: parseInt(env.DB_CONN_LIMIT) || 5
 });
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());  
+
 export async function POST({ request }) {
     let conn;
     try {
-        const { username, email, password } = await request.json();
-        
+        const { username, email, password } = await request.json();      
         // Input validation
         if (!username || !email || !password) {
             return new Response(
@@ -28,7 +36,6 @@ export async function POST({ request }) {
                 }
             );
         }
-        
         // Email format validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
@@ -42,7 +49,6 @@ export async function POST({ request }) {
                 }
             );
         }
-
         console.log('Received registration request:', { username, email });
         
         // Hash the password (IMPORTANT for security)
