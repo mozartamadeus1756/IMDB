@@ -26,6 +26,11 @@
  * ```
  */
 declare module '$env/static/private' {
+	export const DB_HOST: string;
+	export const DB_USER: string;
+	export const DB_PASSWORD: string;
+	export const DB_NAME: string;
+	export const DB_CONN_LIMIT: string;
 	export const NVM_INC: string;
 	export const TERM_PROGRAM: string;
 	export const NODE: string;
@@ -125,6 +130,11 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
+		DB_HOST: string;
+		DB_USER: string;
+		DB_PASSWORD: string;
+		DB_NAME: string;
+		DB_CONN_LIMIT: string;
 		NVM_INC: string;
 		TERM_PROGRAM: string;
 		NODE: string;

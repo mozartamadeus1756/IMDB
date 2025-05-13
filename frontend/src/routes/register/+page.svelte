@@ -1,23 +1,15 @@
 <script>
-
     import BackButton from "../BackButton.svelte";
     import { onMount } from 'svelte';
-    
-  let username = '';
-  let email = '';
-  let password = '';
-  let message = '';
 
-  async function registerUser() {
-    const response = await fetch('http://localhost:5001/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, email, password })
-    });
-
-    const data = await response.json();
-    message = data.message;
-  }
+//   onMount(async () => {
+//     const form = document.querySelector('.register-form');
+//     form.addEventListener('submit', async (event) => {
+//       event.preventDefault();
+//       await registerUser();
+//       alert(message);
+//     });
+//   });
 
     onMount(async () => {
         fetch("http://localhost:5001")
@@ -30,6 +22,7 @@
     return [];
     });
     });
+
 </script>
 
 <BackButton /> 
@@ -60,6 +53,8 @@
         <p class="login-link">Already have an account? <a href="/login" aria-label="Go to login page">Login here</a></p>
     </form>
 </main>
+
+<p>{message}</p>
 
 
 <style>

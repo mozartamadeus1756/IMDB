@@ -3,8 +3,8 @@ const mariadb = require('mariadb');
 const express = require('express')
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
 const app = express();
+
 const port = 5001;
 
 const pool = mariadb.createPool({
@@ -18,6 +18,7 @@ const pool = mariadb.createPool({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors()); 
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.json('Backend server connection successful');
