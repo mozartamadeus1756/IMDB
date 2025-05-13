@@ -2,7 +2,8 @@
     import BackButton from "../BackButton.svelte";
     import { onMount } from 'svelte';
 
-    async function userData() {
+// Frontend Registration Handler
+    async function submitRegistration(username, email, password) {
         try {
             const response = await fetch('/api/database/register', {
                 method: 'POST',
@@ -10,21 +11,47 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    username: userData.username,
-                    email: userData.email,
-                    password: userData.password
+                    username: username,
+                    email: email,
+                    password: password
                 })
             });
+            
             if (!response.ok) {
                 throw new Error(`Error: ${response.statusText}`);
             }
+            
             const data = await response.json();
-            console.log(userData.name, userData.email);
+            console.log('Registration successful:', data);
+            return data;
         } catch (error) {
             console.error('Error saving data:', error);
+            throw error;
         }
     }
 
+    // Usage in Svelte component
+    // Inside your form submit handler:
+    async function handleRegister() {
+        try {
+            // Validate inputs first
+            if (password !== confirmPassword) {
+                alert("Passwords don't match");
+                return;
+            }
+            
+            const result = await submitRegistration(username, email, password);
+            
+            // Handle successful registration
+            console.log('User registered successfully');
+            // Redirect to login page
+            goto('/login');
+        } catch (error) {
+            // Handle registration error
+            console.error('Registration failed:', error);
+        }
+    }
+    
     // onMount(async () => {
     //     fetch("http://localhost:5001")
     //     .then(response => response.json())
@@ -66,8 +93,6 @@
         <p class="login-link">Already have an account? <a href="/login" aria-label="Go to login page">Login here</a></p>
     </form>
 </main>
-
-<p>{message}</p>
 
 
 <style>
