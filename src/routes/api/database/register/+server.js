@@ -1,12 +1,7 @@
 // Enhanced backend registration endpoint
-import { env } from '$env/dynamic/private'; // Import environment variables from SvelteKit
+import { env } from '$env/dynamic/private'; 
 import mariadb from 'mariadb';
-import bcrypt from 'bcrypt'; // You'll need to install this package
-import cors from 'cors'; // You'll need to install this package
-import express from 'express';
-import bodyParser from 'body-parser';
-
-const app = express();
+import bcrypt from 'bcrypt'; 
 
 const pool = mariadb.createPool({
     host: env.DB_HOST,
@@ -16,15 +11,12 @@ const pool = mariadb.createPool({
     connectionLimit: parseInt(env.DB_CONN_LIMIT) || 5
 });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());  
+console.log('Database connection pool created with limit:', env.DB_NAME);
 
 export async function POST({ request }) {
     let conn;
     try {
         const { username, email, password } = await request.json();      
-        // Input validation
         if (!username || !email || !password) {
             return new Response(
                 JSON.stringify({ error: "All fields are required" }),
@@ -51,13 +43,11 @@ export async function POST({ request }) {
         }
         console.log('Received registration request:', { username, email });
         
-        // Hash the password (IMPORTANT for security)
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
         
         conn = await pool.getConnection();
         
-        // Check if user already exists
         const existingUser = await conn.query(
             'SELECT * FROM users WHERE username = ? OR email = ?',
             [username, email]
@@ -75,7 +65,6 @@ export async function POST({ request }) {
             );
         }
 
-        // Insert new user with hashed password
         const result = await conn.query(
             'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
             [username, email, hashedPassword]
@@ -113,60 +102,4 @@ export async function POST({ request }) {
         }
     }
 }
-
-
-
-// import { env } from '$env/dynamic/private'; // Importerer miljøvariabler fra SvelteKit
-// import mariadb from 'mariadb'; 
-
-// const pool = mariadb.createPool({
-//     host: env.DB_HOST,
-//     user: env.DB_USER,
-//     password: env.DB_PASSWORD,
-//     database: env.DB_NAME,
-//     connectionLimit: parseInt(env.DB_CONN_LIMIT) || 5
-// });
-
-// export async function POST({ request }) {
-//     let conn;
-// 	try {
-//         const { username, email, password } = await request.json();
-//         console.log('Received registration request:', { username, email });
-        
-//         conn = await pool.getConnection();
-
-//         const result = await conn.query(
-//             'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
-//             [username, email, password]
-//         );
-        
-//         console.log('Database insert result:', result);
-//         // Returnerer en suksessrespons
-//         return new Response(
-//             JSON.stringify({ 
-//                 success: true, 
-//                 message: "User registered successfully" 
-//             }),
-//             {
-//                 status: 200,
-//                 headers: {
-//                     "Content-Type": "application/json",
-//                 },
-//             }
-//         );
-// 	} catch (error) {
-// 		// Logger feilen for debugging
-// 		console.error("Error:", error);
-// 		// Returnerer en feilmelding som en JSON-respons
-// 		return new Response(
-// 			JSON.stringify({ error: "Internal Server Error" }),
-// 			{
-// 				status: 500, // HTTP-statuskode for intern serverfeil
-// 				headers: {
-// 					"Content-Type": "application/json", // Angir at vi sender JSON-data
-// 				},
-// 			}
-// 		);
-// 	}
-// }
 

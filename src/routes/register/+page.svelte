@@ -1,6 +1,7 @@
 <script>
     import BackButton from "../BackButton.svelte";
-    import { onMount } from 'svelte';
+    // import { onMount } from 'svelte';
+    import { goto } from '$app/navigation';
 
 // Frontend Registration Handler
     async function submitRegistration(username, email, password) {
@@ -24,14 +25,13 @@
             const data = await response.json();
             console.log('Registration successful:', data);
             return data;
+
         } catch (error) {
             console.error('Error saving data:', error);
             throw error;
         }
     }
 
-    // Usage in Svelte component
-    // Inside your form submit handler:
     async function handleRegister() {
         try {
             // Validate inputs first
@@ -41,10 +41,7 @@
             }
             
             const result = await submitRegistration(username, email, password);
-            
-            // Handle successful registration
             console.log('User registered successfully');
-            // Redirect to login page
             goto('/login');
         } catch (error) {
             // Handle registration error
@@ -93,6 +90,7 @@
         <p class="login-link">Already have an account? <a href="/login" aria-label="Go to login page">Login here</a></p>
     </form>
 </main>
+
 
 
 <style>
