@@ -2,31 +2,44 @@
     import BackButton from "../BackButton.svelte";
     import { onMount } from 'svelte';
 
-//   onMount(async () => {
-//     const form = document.querySelector('.register-form');
-//     form.addEventListener('submit', async (event) => {
-//       event.preventDefault();
-//       await registerUser();
-//       alert(message);
-//     });
-//   });
+    async function userData() {
+        try {
+            const response = await fetch('/api/database/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: userData.username,
+                    email: userData.email,
+                    password: userData.password
+                })
+            });
+            if (!response.ok) {
+                throw new Error(`Error: ${response.statusText}`);
+            }
+            const data = await response.json();
+            console.log(userData.name, userData.email);
+        } catch (error) {
+            console.error('Error saving data:', error);
+        }
+    }
 
-    onMount(async () => {
-        fetch("http://localhost:5001")
-        .then(response => response.json())
-        .then(data => {
-		    console.log(data);
-         apiData.set(data);
-        }).catch(error => {
-    console.log(error);
-    return [];
-    });
-    });
+    // onMount(async () => {
+    //     fetch("http://localhost:5001")
+    //     .then(response => response.json())
+    //     .then(data => {
+	// 	    console.log(data);
+    //      userData.set(data);
+    //     }).catch(error => {
+    // console.log(error);
+    // return [];
+    // });
+    // });
 
 </script>
 
 <BackButton /> 
-
 
 <main class="register-container" >
     <h1>Register !!</h1>
