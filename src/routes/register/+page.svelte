@@ -1,65 +1,66 @@
 <script>
     import BackButton from "../BackButton.svelte";
+
+function getSomeData() {
+  const url = 'http://localhost:3000/';
+  const response = fetch(url)
+    .then(data => {
+      console.log('Got data from API!', data)
+    }).catch(err => {
+      console.log('Something went wrong', err);
+    });
+    return response;
+}
+
+
     // import { onMount } from 'svelte';
-    import { goto } from '$app/navigation';
-
-// Frontend Registration Handler
-    async function submitRegistration(username, email, password) {
-        try {
-            const response = await fetch('/api/database/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username: username,
-                    email: email,
-                    password: password
-                })
-            });
+// // Frontend Registration Handler
+//     async function submitRegistration(username, email, password) {
+//         try {
+//             const response = await fetch('/api/database/register', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json'
+//                 },
+//                 body: JSON.stringify({
+//                     username: username,
+//                     email: email,
+//                     password: password
+//                 })
+//             });
             
-            if (!response.ok) {
-                throw new Error(`Error: ${response.statusText}`);
-            }
+//             if (!response.ok) {
+//                 throw new Error(`Error: ${response.statusText}`);
+//             }
             
-            const data = await response.json();
-            console.log('Registration successful:', data);
-            return data;
+//             const data = await response.json();
+//             console.log('Registration successful:', data);
+//             return data;
 
-        } catch (error) {
-            console.error('Error saving data:', error);
-            throw error;
-        }
-    }
+//         } catch (error) {
+//             console.error('Error saving data:', error);
+//             throw error;
+//         }
+//     }
 
-    async function handleRegister() {
-        try {
-            // Validate inputs first
-            if (password !== confirmPassword) {
-                alert("Passwords don't match");
-                return;
-            }
+//     async function handleRegister() {
+//         try {
+//             // Validate inputs first
+//             if (password !== confirmPassword) {
+//                 alert("Passwords don't match");
+//                 return;
+//             }
             
-            const result = await submitRegistration(username, email, password);
-            console.log('User registered successfully');
-            goto('/login');
-        } catch (error) {
-            // Handle registration error
-            console.error('Registration failed:', error);
-        }
-    }
+//             const result = await submitRegistration(username, email, password);
+//             console.log('User registered successfully');
+//             goto('/login');
+//         } catch (error) {
+//             // Handle registration error
+//             console.error('Registration failed:', error);
+//         }
+//     }
     
-    // onMount(async () => {
-    //     fetch("http://localhost:5001")
-    //     .then(response => response.json())
-    //     .then(data => {
-	// 	    console.log(data);
-    //      userData.set(data);
-    //     }).catch(error => {
-    // console.log(error);
-    // return [];
-    // });
-    // });
+
 
 </script>
 
