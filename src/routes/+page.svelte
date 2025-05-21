@@ -1,20 +1,4 @@
-<script>
-  let users = [];
-  import { onMount } from 'svelte';
-
-  onMount(async () => {
-    const res = await fetch('/api/db');
-    users = await res.json();
-    console.log(users); // This will now log to the browser console
-  });
-</script>
-
-
-
-
-
-
-<!-- <script lang="ts">
+<script lang="ts">
   import Navbar from "./Navbar.svelte";
   import BottomNav from "./BottomNav.svelte";
   // Sample movie data - you can replace with your actual data
@@ -96,4 +80,4 @@
 }
 </style>
 
-<BottomNav /> -->
+<BottomNav />

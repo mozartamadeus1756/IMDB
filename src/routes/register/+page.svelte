@@ -1,95 +1,82 @@
 <script>
     import BackButton from "../BackButton.svelte";
+    import { onMount } from 'svelte';
+    import { goto } from '$app/navigation';
 
-function getSomeData() {
-  const url = 'http://localhost:3000/';
-  const response = fetch(url)
-    .then(data => {
-      console.log('Got data from API!', data)
-    }).catch(err => {
-      console.log('Something went wrong', err);
-    });
-    return response;
-}
-
-
-    // import { onMount } from 'svelte';
-// // Frontend Registration Handler
-//     async function submitRegistration(username, email, password) {
-//         try {
-//             const response = await fetch('/api/database/register', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'application/json'
-//                 },
-//                 body: JSON.stringify({
-//                     username: username,
-//                     email: email,
-//                     password: password
-//                 })
-//             });
-            
-//             if (!response.ok) {
-//                 throw new Error(`Error: ${response.statusText}`);
-//             }
-            
-//             const data = await response.json();
-//             console.log('Registration successful:', data);
-//             return data;
-
-//         } catch (error) {
-//             console.error('Error saving data:', error);
-//             throw error;
-//         }
-//     }
-
-//     async function handleRegister() {
-//         try {
-//             // Validate inputs first
-//             if (password !== confirmPassword) {
-//                 alert("Passwords don't match");
-//                 return;
-//             }
-            
-//             const result = await submitRegistration(username, email, password);
-//             console.log('User registered successfully');
-//             goto('/login');
-//         } catch (error) {
-//             // Handle registration error
-//             console.error('Registration failed:', error);
-//         }
-//     }
+    let username = '';
+	let email = '';
+	let password = '';
+	let confirmPassword = '';
+    let isLoading = false;
+    let errorMessage = '';
     
+    async function handleSubmit(event) {
+        event.preventDefault();
+        errorMessage = '';
+        if (password !== confirmPassword) {
+            errorMessage = "Passwords do not match!";
+            return;
+        }
+        try {
+            isLoading = true;
+            const res = await fetch('/api/db', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, email, password })
+            });
+            
+            const data = await res.json();
+            console.log(data);
+            
+            if (res.ok) {
+                goto('/login');
+            } else {
+                errorMessage = data.message || "Registration failed. Please try again.";
+            }
+        } catch (error) {
+            console.error("Registration error:", error);
+            errorMessage = "Something went wrong. Please try again later.";
+        } finally {
+            isLoading = false;
+        }
+    }
 
+    let users = '';
+
+    onMount(async () => {
+        const res = await fetch('/api/db');
+        users = await res.json();
+        console.log(users); // This will now log to the browser console
+    });
 
 </script>
 
-<BackButton /> 
+<BackButton />
 
 <main class="register-container" >
     <h1>Register !!</h1>
-    <form class="register-form" aria-labelledby="register-heading">
-        <h2 id="register-heading" class="visually-hidden">Registration Form</h2>
-        
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required aria-required="true">
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required aria-required="true">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required aria-required="true">
-        </div>
-        <div class="form-group">
-            <label for="confirm-password">Confirm Password</label>
-            <input type="password" id="confirm-password" name="confirm-password" required aria-required="true">
-        </div>
-        <button type="submit" class="register-btn" aria-label="Create your account">Register</button>
-        <p class="login-link">Already have an account? <a href="/login" aria-label="Go to login page">Login here</a></p>
-    </form>
+    <form class="register-form" on:submit|preventDefault={handleSubmit}>
+	<div class="form-group">
+		<label for="username">Username</label>
+		<input type="text" id="username" bind:value={username} required>
+	</div>
+	<div class="form-group">
+		<label for="email">Email</label>
+		<input type="email" id="email" bind:value={email} required>
+	</div>
+	<div class="form-group">
+		<label for="password">Password</label>
+		<input type="password" id="password" bind:value={password} required>
+	</div>
+	<div class="form-group">
+		<label for="confirm-password">Confirm Password</label>
+		<input type="password" id="confirm-password" bind:value={confirmPassword} required>
+	</div>
+	<button type="submit" class="register-btn">Register</button>
+    <p class="login-link">Already have an account? <a href="/login" aria-label="Go to login page">Login here</a></p>
+</form>
 </main>
 
 
