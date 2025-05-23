@@ -12,12 +12,13 @@ export async function POST({ request }) {
 		); 
 		
 		const user = users[0];  
-		
+		console.log('DB returned user:', user); // Add this for debugging
+
 		if (!user || !user.password) { 
 			return json({ error: 'User not found or invalid' }, { status: 401 }); 
 		}  
 		
-		const isValid = await bcrypt.compare(password, user.password);
+		const isValid = await bcrypt.compare(password, user.password.toString());
 		
 		if (!isValid) { 
 			return json({ error: 'Invalid credentials' }, { status: 401 }); 
