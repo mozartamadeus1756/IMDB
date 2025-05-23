@@ -19,12 +19,12 @@
         }
         try {
             isLoading = true;
-            const res = await fetch('/api/db', {
+            const res = await fetch('/api/db/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username, email, password })
+                body: JSON.stringify({ username, email, password }) 
             });
             
             const data = await res.json();
@@ -46,16 +46,16 @@
     let users = '';
 
     onMount(async () => {
-        const res = await fetch('/api/db');
+        const res = await fetch('/api/db/regsister');
         users = await res.json();
-        console.log(users); // This will now log to the browser console
+        console.log(users); 
     });
 
 </script>
 
 <BackButton />
 
-<main class="register-container" >
+<main class="register-container">
     <h1>Register !!</h1>
     <form class="register-form" on:submit|preventDefault={handleSubmit}>
 	<div class="form-group">

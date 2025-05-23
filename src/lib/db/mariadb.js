@@ -28,10 +28,13 @@ export async function query(sql, params) {
         throw error;
     } finally {
         if (conn) {
-            conn.release(); // Release connection back to pool
+            conn.release(); 
         }
     }
 }
+
+
+
 
 
 

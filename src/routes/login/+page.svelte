@@ -1,56 +1,58 @@
 <script>
     import BackButton from "../BackButton.svelte";
+    import { onMount } from 'svelte';
+    import { goto } from '$app/navigation';
 
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     const loginForm = document.querySelector('.login-form');
-    //     loginForm.addEventListener('submit', async (e) => {
-    //         e.preventDefault();
-    //         const username = document.getElementById('username').value;
-    //         const email = document.getElementById('email').value;
-    //         const password = document.getElementById('password').value;
-            
-    //         try {
-    //             const response = await fetch('http://localhost:5000/login', {
-    //                 method: 'POST',
-    //                 headers: { 'Content-Type': 'application/json' },
-    //                 body: JSON.stringify({ username, email, password })
-    //             });
-    //             const data = await response.json();
-    //             if (data.success) {
-    //                 // localStorage.setItem('username', username);
-    //                 window.location.href = '/'; // Redirect to home page, change later to the main page !!!
-    //                 alert('Login successful!');
-    //             } else {
-    //                 alert('Login failed: ' + data.message);
-    //             }
-    //         } catch (error) {
-    //             alert('An error occurred during login');
-    //             console.error('Error:', error);
-    //         }
-    //     });
-    // });
+    let username = '';
+	let email = '';
+	let password = '';
+
+	async function handleLogin(event) {
+		event.preventDefault();
+		const res = await fetch('/api/db/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ username, email, password })
+		});
+		const data = await res.json();
+		if (res.ok) {
+			console.log("Login successful");
+			goto('/main'); 
+		} else {
+			alert(data.error || 'Login failed');
+		}
+	}
+    
+    let users = '';
+
+    onMount(async () => {
+        const res = await fetch('/api/db/register');
+        users = await res.json();
+        console.log(users); 
+    });
 
 </script>
 
 <BackButton />
 
 <main class="login-container">
-    <h1>Welcome back !!</h1>
-    <form class="login-form" aria-labelledby="login-heading">
-        <h2 id="login-heading" class="visually-hidden">Login Form</h2>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required aria-required="true">
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required aria-required="true">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required aria-required="true">
-        </div>
-        <button type="submit" class="login-btn" aria-label="Login to your account">Login</button>
+    <h1>Welcome back u bitch !!</h1>
+    <form class="login-form" on:submit={handleLogin}>
+	<div class="form-group">
+		<label for="username">Username</label>
+		<input type="text" id="username" bind:value={username} required>
+	</div>
+	<div class="form-group">
+		<label for="email">Email</label>
+		<input type="email" id="email" bind:value={email} required>
+	</div>
+	<div class="form-group">
+		<label for="password">Password</label>
+		<input type="password" id="password" bind:value={password} required>
+	</div>
+	<button type="submit" class="login-btn">Login</button>
     </form>
     <p class="register-link">New here? <a href="/register" class="register-btn" aria-label="Go to registration page">Register</a></p>
 </main>
@@ -109,5 +111,3 @@
         text-decoration: underline;
     }
 </style>
-
-<!-- lage login button mot bunnen som er til å redriecte til neste side !! -->
