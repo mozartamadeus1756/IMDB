@@ -1,3 +1,22 @@
+# IMDB project 
+
+I've made a IMDB cpoy-project !! I'm using Svelte as my framwork and mariadb as my database !! 
+
+- [IMDB project](#IMDB-project)
+  - [How to run??](#how-to-run-)
+    - [Prere1uisist](#prerequesist)
+
+
+## How to run ?? 
+
+
+
+### Prerequesist 
+
+
+
+
+
 # sv
 
 Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
