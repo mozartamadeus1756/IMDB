@@ -2,6 +2,7 @@
     import BackButton from "../BackButton.svelte";
     import { onMount } from 'svelte';
     import { goto } from '$app/navigation';
+    import { browser } from '$app/environment';
 
     let username = '';
 	let email = '';
@@ -16,9 +17,14 @@
 			},
 			body: JSON.stringify({ username, email, password })
 		});
+
 		const data = await res.json();
 		if (res.ok) {
+            if (browser) {
+                localStorage.setItem('user', JSON.stringify(data.user));  // Store user data in localStorage !!! 
+            }
 			console.log("Login successful");
+            alert('Login successful');
 			goto('/main'); 
 		} else {
 			alert(data.error || 'Login failed');

@@ -22,7 +22,17 @@ export async function POST({ request }) {
 		
 		if (!isValid) { 
 			return json({ error: 'Invalid credentials' }, { status: 401 }); 
-		}  
+		} 
+		
+		// Return user data to store in localStorage on client side
+		return json({ 
+			success: true, 
+			user: {
+				id: user.user_id,
+				username: user.username,
+				email: user.email
+			}
+		}); 
 		
 		return json({ success: true }); 
 	} catch (err) { 

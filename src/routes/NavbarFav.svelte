@@ -1,4 +1,19 @@
-<script></script>
+<script>
+    import { getUserId, logout } from '$lib/stores/user.js';
+    import { onMount } from 'svelte';
+
+    let userId = null;
+
+    onMount(() => {
+        userId = getUserId();
+    });
+
+    function handleLogout() {
+        logout();
+        userId = null;
+        window.location.href = '/';
+    }
+</script>
 
 <nav>
     <div class="navbar">
@@ -8,6 +23,12 @@
             <li><a href="/randomise">Randomise</a></li>
             <li><a href="/favorites">Favorites</a></li>  
         </ul>
+
+        {#if userId}
+            <ul>
+                <li><button class="link-button" on:click={handleLogout}>Logout</button></li>
+            </ul>
+        {/if}
     </div>
 </nav>
 
@@ -41,6 +62,20 @@
     }
 
     a:hover {
+        text-decoration: underline;
+    }
+
+    .link-button {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        font: inherit;
+        text-decoration: none;
+        padding: 0;
+    }
+
+    .link-button:hover {
         text-decoration: underline;
     }
 </style>

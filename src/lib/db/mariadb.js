@@ -1,12 +1,13 @@
 // lib/db/mariadb.js
+import 'dotenv/config'; // OR: import dotenv from 'dotenv'; dotenv.config();
 import mariadb from 'mariadb';
 
 export const pool = mariadb.createPool({
-    host: 'localhost',
-    user: 'kine',
-    password: 'kulekine1234',
-    database: 'IMDB',
-    connectionLimit: 5
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    connectionLimit: parseInt(process.env.DB_CONNECTION_LIMIT) || 5
 });
 
 export async function getConnection() {
