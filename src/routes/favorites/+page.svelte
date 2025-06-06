@@ -1,6 +1,6 @@
 <!-- src/routes/favorites/+page.svelte -->
 <script>
-    import BackButton from '../BackButton.svelte';
+    import BackButtonMain from '../BackButtonMain.svelte';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { getCurrentUser, getUserId } from '$lib/stores/user.js';
@@ -13,46 +13,40 @@
 	onMount(async () => {
 		// Get user from localStorage
 		user = getCurrentUser();
-		
-		if (!user) {
-			// Redirect to login if not logged in
-			goto('/login');
-			return;
-		}
 		// Fetch user's favorites
-		await loadFavorites();
+		//await loadFavorites();
+        console.log('User:', user);
 	});
 
-	async function loadFavorites() {
-		try {
-			const userId = getUserId();
+	// async function loadFavorites() {
+	// 	try {
+	// 		const userId = getUserId();
 			
-			const response = await fetch('/api/favorites', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ user_id: userId })
-			});
+	// 		const response = await fetch('/api/favorites', {
+	// 			method: 'POST',
+	// 			headers: {
+	// 				'Content-Type': 'application/json'
+	// 			},
+	// 			body: JSON.stringify({ user_id: userId })
+	// 		});
 
-			const data = await response.json();
+	// 		const data = await response.json();
 			
-			if (data.success) {
-				favorites = data.favorites;
-			} else {
-				error = data.error || 'Failed to load favorites';
-			}
-		} catch (err) {
-			error = 'Error loading favorites';
-			console.error('Favorites error:', err);
-		} finally {
-			loading = false;
-		}
-	}
+	// 		if (data.success) {
+	// 			favorites = data.favorites;
+	// 		} else {
+	// 			error = data.error || 'Failed to load favorites';
+	// 		}
+	// 	} catch (err) {
+	// 		error = 'Error loading favorites';
+	// 		console.error('Favorites error:', err);
+	// 	} finally {
+	// 		loading = false;
+	// 	}
+	// };
 </script>
 
-<BackButton />
-
+<BackButtonMain />
 
 
 <!-- {#if loading}

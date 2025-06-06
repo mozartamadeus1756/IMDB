@@ -46,7 +46,7 @@
     let users = '';
 
     onMount(async () => {
-        const res = await fetch('/api/db/regsister');
+        const res = await fetch('/api/db/register');
         users = await res.json();
         console.log(users); 
     });
