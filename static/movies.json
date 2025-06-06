@@ -1,0 +1,104 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "The Shawshank Redemption",
+      "genre": ["Drama"],
+      "length": 142,
+      "year": 1994,
+      "director": "Frank Darabont",
+      "rating": 9.3,
+      "poster": "https://via.placeholder.com/300x450/2c3e50/ffffff?text=Shawshank"
+    },
+    {
+      "id": 2,
+      "title": "The Godfather",
+      "genre": ["Crime", "Drama"],
+      "length": 175,
+      "year": 1972,
+      "director": "Francis Ford Coppola",
+      "rating": 9.2,
+      "poster": "https://via.placeholder.com/300x450/34495e/ffffff?text=Godfather"
+    },
+    {
+      "id": 3,
+      "title": "The Dark Knight",
+      "genre": ["Action", "Crime", "Drama"],
+      "length": 152,
+      "year": 2008,
+      "director": "Christopher Nolan",
+      "rating": 9.0,
+      "poster": "https://via.placeholder.com/300x450/2c3e50/ffffff?text=Dark+Knight"
+    },
+    {
+      "id": 4,
+      "title": "Pulp Fiction",
+      "genre": ["Crime", "Drama"],
+      "length": 154,
+      "year": 1994,
+      "director": "Quentin Tarantino",
+      "rating": 8.9,
+      "poster": "https://via.placeholder.com/300x450/e74c3c/ffffff?text=Pulp+Fiction"
+    },
+    {
+      "id": 5,
+      "title": "Forrest Gump",
+      "genre": ["Drama", "Romance"],
+      "length": 142,
+      "year": 1994,
+      "director": "Robert Zemeckis",
+      "rating": 8.8,
+      "poster": "https://via.placeholder.com/300x450/27ae60/ffffff?text=Forrest+Gump"
+    },
+    {
+      "id": 6,
+      "title": "Inception",
+      "genre": ["Action", "Sci-Fi", "Thriller"],
+      "length": 148,
+      "year": 2010,
+      "director": "Christopher Nolan",
+      "rating": 8.8,
+      "poster": "https://via.placeholder.com/300x450/8e44ad/ffffff?text=Inception"
+    },
+    {
+      "id": 7,
+      "title": "Fight Club",
+      "genre": ["Drama"],
+      "length": 139,
+      "year": 1999,
+      "director": "David Fincher",
+      "rating": 8.8,
+      "poster": "https://via.placeholder.com/300x450/e67e22/ffffff?text=Fight+Club"
+    },
+    {
+      "id": 8,
+      "title": "The Matrix",
+      "genre": ["Action", "Sci-Fi"],
+      "length": 136,
+      "year": 1999,
+      "director": "The Wachowskis",
+      "rating": 8.7,
+      "poster": "https://via.placeholder.com/300x450/16a085/ffffff?text=The+Matrix"
+    },
+    {
+      "id": 9,
+      "title": "Goodfellas",
+      "genre": ["Biography", "Crime", "Drama"],
+      "length": 146,
+      "year": 1990,
+      "director": "Martin Scorsese",
+      "rating": 8.7,
+      "poster": "https://via.placeholder.com/300x450/c0392b/ffffff?text=Goodfellas"
+    },
+    {
+      "id": 10,
+      "title": "Interstellar",
+      "genre": ["Adventure", "Drama", "Sci-Fi"],
+      "length": 169,
+      "year": 2014,
+      "director": "Christopher Nolan",
+      "rating": 8.6,
+      "poster": "https://via.placeholder.com/300x450/f39c12/ffffff?text=Interstellar"
+    }
+  ]
+}

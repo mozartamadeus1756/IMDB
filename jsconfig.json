@@ -3,7 +3,7 @@
 	"include": [
 		"../IMDB/src/**/*",
 		"../IMDB/!src/routes/login/register/+page.svelte"
-	],
+, "static/movies.json"	],
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": false,
