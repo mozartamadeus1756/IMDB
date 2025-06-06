@@ -1,6 +1,6 @@
 <!-- src/routes/favorites/+page.svelte -->
 <script>
-    import BackButtonMain from '../BackButtonMain.svelte';
+    import BackButtonMain from '../components/BackButtonMain.svelte';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { getCurrentUser, getUserId } from '$lib/stores/user.js';

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Navbar from "./Navbar.svelte";
-  import BottomNav from "./BottomNav.svelte"; 
+  import Navbar from "./components/Navbar.svelte";
+  import BottomNav from "./components/BottomNav.svelte";
 
 
   // Sample movie data - you can replace with your actual data

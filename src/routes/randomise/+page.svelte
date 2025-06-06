@@ -1,5 +1,5 @@
 <script>
-    import BackButton from "../BackButton.svelte";
+    import BackButton from "../components/BackButton.svelte";
 
   const allGenres = [
     'Action', 'Adventure', 'Comedy', 'Drama', 'Fantasy', 

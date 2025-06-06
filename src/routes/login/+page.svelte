@@ -1,5 +1,5 @@
 <script>
-    import BackButton from "../BackButton.svelte";
+    import BackButton from "../components/BackButton.svelte";
     import { onMount } from 'svelte';
     import { goto } from '$app/navigation';
     import { browser } from '$app/environment';
