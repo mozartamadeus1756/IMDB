@@ -25,7 +25,7 @@
         try {
             const userId = getUserId();
             
-            const response = await fetch('/api/favorites/get', {
+            const response = await fetch('/api/db/favorites/get', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
