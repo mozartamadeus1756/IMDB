@@ -11,7 +11,7 @@
 <main>
     <div class="grid">
         <MovieCard title="Shrek" />
-        <MovieCard title="Inception" isFavorite={true} />
+        <MovieCard title="Inception" />
         <MovieCard title="Totoro" />
         <MovieCard title="Fight Club" />
     </div>
