@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 
   import BackButton from "../components/BackButton.svelte";
   
@@ -93,4 +93,4 @@
     background-color: #f9f9f9;
   }
 </style>
-  
+   -->
