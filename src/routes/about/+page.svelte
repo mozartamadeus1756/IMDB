@@ -5,7 +5,6 @@
 <BackButton />
 <div class="about-container">
     <h1>About</h1>
-    <p>This is the about page of the app.</p>
-    <p>Here you can find information about the app and its features.</p>
-    <p>For more information, visit our website.</p>
+    <p>OKAY SÅ HER TENKER JEG KNAKSJE OG LEGGE TIL LITT FORIDKILLGE TIGN SOM HAR MED PEOSKEJT</p>
+    <p>GITHUB, TRELLO, SKISSER, LINKER OSV</p>
 </div>

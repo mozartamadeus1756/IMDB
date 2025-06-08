@@ -1,34 +1,34 @@
 <script>
     import NavbarFav from "../components/NavbarFav.svelte";
     import BottomNav from "../components/BottomNav.svelte";
-    import MovieCard from "../components/MovieCard.svelte";
-    import { onMount } from 'svelte';
+    // import MovieCard from "../components/MovieCard.svelte";
+    // import { onMount } from 'svelte';
 
-    let movies = [];
-    let loading = true;
-    let error = '';
+    // let movies = [];
+    // let loading = true;
+    // let error = '';
 
-    onMount(async () => {
-        try {
-            // Load movies from JSON file
-            const response = await fetch('/movies.json');
-            if (!response.ok) {
-                throw new Error('Failed to load movies');
-            }
-            const data = await response.json();
-            movies = data.movies;
-        } catch (err) {
-            console.error('Error loading movies:', err);
-            error = 'Failed to load movies';
-        } finally {
-            loading = false;
-        }
-    });
+    // onMount(async () => {
+    //     try {
+    //         // Load movies from JSON file
+    //         const response = await fetch('/movies.json');
+    //         if (!response.ok) {
+    //             throw new Error('Failed to load movies');
+    //         }
+    //         const data = await response.json();
+    //         movies = data.movies;
+    //     } catch (err) {
+    //         console.error('Error loading movies:', err);
+    //         error = 'Failed to load movies';
+    //     } finally {
+    //         loading = false;
+    //     }
+    // });
 </script>
 
 <NavbarFav />
 
-<main>
+<!-- <main>
     {#if loading}
         <div class="loading">Loading movies...</div>
     {:else if error}
@@ -42,11 +42,11 @@
     {:else}
         <div class="no-movies">No movies available</div>
     {/if}
-</main>
+</main> -->
 
 <BottomNav />
 
-<style>
+<!-- <style>
     main {
         padding: 2rem;
         display: flex;
@@ -85,4 +85,4 @@
             gap: 1rem;
         }
     }
-</style>
+</style> -->

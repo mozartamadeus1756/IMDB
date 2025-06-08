@@ -4,14 +4,14 @@ I've made a IMDB cpoy-project !! I'm using Svelte as my framwork and mariadb as 
 
 - [IMDB project](#IMDB-project)
   - [How to run??](#how-to-run-)
-    - [Prere1uisist](#prerequesist)
+    - [Prerequisits](#prerequisits)
 
 
 ## How to run ?? 
 
 
 
-### Prerequesist 
+### Prerequisits 
 
 
 

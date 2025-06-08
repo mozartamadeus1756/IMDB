@@ -44,7 +44,7 @@
 <BackButton />
 
 <main class="login-container">
-    <h1>Welcome back u bitch !!</h1>
+    <h1>Welcome back!</h1>
     <form class="login-form" on:submit={handleLogin}>
 	<div class="form-group">
 		<label for="username">Username</label>
