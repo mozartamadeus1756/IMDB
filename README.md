@@ -89,6 +89,72 @@ npm run dev
 
 
 
+## Other 
+
+To show how my project is built i've made a system sketch 
+
+```mermaid
+graph TD
+    %% User Layer
+    A[USER<br/>Web Browser<br/>Search, Login, Favorites] --> B
+
+    %% Frontend Layer
+    B[FRONTEND - Svelte<br/>User Interface] --> C1[Login/Register<br/>Pages]
+    B --> C2[Movie Search<br/>Component]
+    B --> C3[Movie Display<br/>Component]
+    B --> C4[Favorites<br/>Page]
+    B --> C5[Random Movie<br/>Button]
+
+    %% Backend connections
+    C1 --> D[BACKEND<br/>Svelte + Node.js<br/>Server Logic]
+    C2 --> D
+    C3 --> D
+    C4 --> D
+    C5 --> D
+
+    %% Backend services
+    D --> E1[User Authentication<br/>Login/Register Logic]
+    D --> E2[Movie API<br/>Get Movie Data]
+    D --> E3[Search Logic<br/>Filter Movies]
+    D --> E4[Favorites API<br/>Save/Remove Favorites]
+    D --> E5[Random Logic<br/>Pick Random Movie]
+
+    %% Data Layer
+    E1 --> F1[DATABASE<br/>MariaDB]
+    E4 --> F1
+    
+    E2 --> F2[MOVIE DATA<br/>movies.json]
+    E3 --> F2
+    E5 --> F2
+
+    %% Database tables
+    F1 --> G1[Users Table<br/>username, email, password]
+    F1 --> G2[Favorites Table<br/>user_id, movie_id, title]
+
+    %% Movie data details
+    F2 --> H1[Movie Information<br/>title, genre, director<br/>year, rating, poster]
+
+    %% Styling
+    classDef userLayer fill:#3498db,stroke:#2980b9,stroke-width:2px,color:#fff
+    classDef frontendLayer fill:#e74c3c,stroke:#c0392b,stroke-width:2px,color:#fff
+    classDef backendLayer fill:#27ae60,stroke:#229954,stroke-width:2px,color:#fff
+    classDef dataLayer fill:#9b59b6,stroke:#8e44ad,stroke-width:2px,color:#fff
+    classDef fileLayer fill:#f39c12,stroke:#e67e22,stroke-width:2px,color:#fff
+
+    class A userLayer
+    class B,C1,C2,C3,C4,C5 frontendLayer
+    class D,E1,E2,E3,E4,E5 backendLayer
+    class F1,G1,G2 dataLayer
+    class F2,H1 fileLayer
+```
+
+
+
+
+
+
+
+
 
 
 
