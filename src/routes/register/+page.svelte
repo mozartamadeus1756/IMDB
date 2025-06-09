@@ -12,14 +12,11 @@
     async function handleSubmit(event) {
         event.preventDefault();
         error = '';
-        // Check if passwords match
         if (password !== confirmPassword) {
             error = "Passwords do not match!";
             return;
         }
-        
         loading = true;
-        
         try {
             const response = await fetch('/api/db/register', {
                 method: 'POST',
@@ -36,19 +33,18 @@
         } catch (err) {
             error = "Something went wrong";
         }
-        
         loading = false;
     }
 
-    // for å se hva sklas users som er i datbasen ?? 
+        // for å se hva sklas users som er i datbasen ?? 
 
-    // let users = ''; // 
+        // let users = ''; // 
 
-    // onMount(async () => {
-    //     const res = await fetch('/api/db/register');
-    //     users = await res.json();
-    //     console.log(users); 
-    // });
+        // onMount(async () => {
+        //     const res = await fetch('/api/db/register');
+        //     users = await res.json();
+        //     console.log(users); 
+        // });
 
 </script>
 

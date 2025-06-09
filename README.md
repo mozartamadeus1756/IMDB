@@ -89,6 +89,50 @@ And start the development server:
 npm run dev 
 ```
 
+**BTW** this is how all my folders and files look like: 
+
+```src
+IMDB/
+├── src/
+│   ├── lib/
+│   │   ├── db/
+│   │   │   └── mariadb.js     
+│   └── routes/
+│       ├── +page.svelte                    # Homepage
+│       ├── api/
+│       │   └── db/
+│       │       ├── login/
+│       │       │   └── +server.js          # Login API
+│       │       ├── register/
+│       │       │   └── +server.js          # Register API
+│       │       └── favorites/
+│       │           ├── add/+server.js      # Add favorite
+│       │           ├── remove/+server.js   # Remove favorite
+│       │           ├── check/+server.js    # Check favorite
+│       │           └── get/+server.js      # Get favorites
+│       ├── components/
+│       │   ├── MovieCard.svelte            # Movie display component
+│       │   ├── Navbar.svelte               # Navigation
+│       │   └── NavbarFav.svelte            # Navigation with favorites
+│       ├── favorites/
+│       │   └── +page.svelte                # Favorites page
+│       ├── login/
+│       │   └── +page.svelte                # Login page
+│       ├── register/
+│       │   └── +page.svelte                # Register page
+│       ├── main/
+│       │   └── +page.svelte                # Main movies page
+│       ├── search/
+│       │   └── +page.svelte                # Search page
+│       └── randomise/
+│           └── +page.svelte                # Random movie page
+├── static/
+│   └── movies.json                         # Movie data
+├── package.json                            # Dependencies
+├── .env 
+└── README.md                               # Documentation
+```
+
 ## Other 
 
 To show how my project is built i've made a system sketch: 

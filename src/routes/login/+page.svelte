@@ -24,9 +24,6 @@
 
             if (response.ok) {
                 const data = await response.json();
-                // if (browser) {
-                //     localStorage.setItem('user', JSON.stringify(data.user));
-                // }
                 goto('/main');
             } else {
                 const data = await response.json();
