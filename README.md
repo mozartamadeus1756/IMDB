@@ -128,7 +128,7 @@ graph TD
     E5 --> F2
 
     %% Database tables
-    F1 --> G1[Users Table<br/>username, email, password]
+    F1 --> G1[Users Table<br/>user_id, username, email, password]
     F1 --> G2[Favorites Table<br/>user_id, movie_id, title]
 
     %% Movie data details
