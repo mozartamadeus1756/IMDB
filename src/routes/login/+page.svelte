@@ -5,115 +5,141 @@
     import { browser } from '$app/environment';
 
     let username = '';
-	let email = '';
-	let password = '';
+    let email = '';
+    let password = '';
+    let error = '';
+    let loading = false;
 
-	async function handleLogin(event) {
-		event.preventDefault();
-		const res = await fetch('/api/db/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ username, email, password })
-		});
+    async function handleLogin(event) {
+        event.preventDefault();
+        error = '';
+        loading = true;
 
-		const data = await res.json();
-		if (res.ok) {
-            if (browser) {
-                localStorage.setItem('user', JSON.stringify(data.user));  // Store user data in localStorage !!! 
+        try {
+            const response = await fetch('/api/db/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, email, password })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                // if (browser) {
+                //     localStorage.setItem('user', JSON.stringify(data.user));
+                // }
+                goto('/main');
+            } else {
+                const data = await response.json();
+                error = data.error || 'Login failed';
             }
-			console.log("Login successful");
-            alert('Login successful');
-			goto('/main'); 
-		} else {
-			alert(data.error || 'Login failed');
-		}
-	}
+        } catch (err) {
+            error = 'Something went wrong';
+        }
+        
+        loading = false;
+    }
     
-    let users = '';
+    // let users = '';
 
-    onMount(async () => {
-        const res = await fetch('/api/db/register');
-        users = await res.json();
-        console.log(users); 
-    });
+    // onMount(async () => {
+    //     const res = await fetch('/api/db/register');
+    //     users = await res.json();
+    //     console.log(users); 
+    // });
 
 </script>
 
 <BackButton />
 
-<main class="login-container">
-    <h1>Welcome back!</h1>
-    <form class="login-form" on:submit={handleLogin}>
-	<div class="form-group">
-		<label for="username">Username</label>
-		<input type="text" id="username" bind:value={username} required>
-	</div>
-	<div class="form-group">
-		<label for="email">Email</label>
-		<input type="email" id="email" bind:value={email} required>
-	</div>
-	<div class="form-group">
-		<label for="password">Password</label>
-		<input type="password" id="password" bind:value={password} required>
-	</div>
-	<button type="submit" class="login-btn">Login</button>
+<main class="container">
+    <h1>Welcome back!!</h1>
+    
+    <form on:submit={handleLogin}>
+        <input type="text" placeholder="Username" bind:value={username} required>
+        <input type="email" placeholder="Email" bind:value={email} required>
+        <input type="password" placeholder="Password" bind:value={password} required>
+        
+        {#if error}
+            <p class="error">{error}</p>
+        {/if}
+        
+        <button type="submit" disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
+        </button>
     </form>
-    <p class="register-link">New here? <a href="/register" class="register-btn" aria-label="Go to registration page">Register</a></p>
+    
+    <p>New here? <a href="/register">Register</a></p>
 </main>
 
 <style>
-    .login-container {
+    .container {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         height: 100vh;
         background-color: #f0f0f0;
+        padding: 20px;
     }
 
     h1 {
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
 
-    .login-form {
+    form {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        width: 300px;
         display: flex;
         flex-direction: column;
-        width: 300px;
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    label {
-        margin-bottom: 5px;
+        gap: 15px;
     }
 
     input {
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
     }
 
-    .login-btn {
-        padding: 10px;
-        background-color: #007bff;
+    button {
+        padding: 12px;
+        background: #007bff;
         color: white;
         border: none;
-        border-radius: 5px;
+        border-radius: 4px;
         cursor: pointer;
+        font-size: 16px;
     }
 
-    .register-link {
-        margin-top: 20px;
+    button:hover:not(:disabled) {
+        background: #0056b3;
     }
-    .register-btn {
+
+    button:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+    }
+
+    .error {
+        color: #e74c3c;
+        margin: 0;
+        text-align: center;
+    }
+
+    p {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    a {
         color: #007bff;
         text-decoration: none;
     }
-    .register-btn:hover {
+
+    a:hover {
         text-decoration: underline;
     }
 </style>
