@@ -23,28 +23,22 @@
         if (!hasSpecialChar) {
             return "Password must contain at least one special character (!@#$%^&* etc.)";
         }
-        return null; // Password is valid
+        return null; 
     }
     
     async function handleSubmit(event) {
         event.preventDefault();
         error = '';
-        
-        // Validate password strength
         const passwordError = validatePassword(password);
         if (passwordError) {
             error = passwordError;
             return;
         }
-        
-        // Check if passwords match
         if (password !== confirmPassword) {
             error = "Passwords do not match!";
             return;
         }
-        
         loading = true;
-        
         try {
             const response = await fetch('/api/db/register', {
                 method: 'POST',
@@ -61,7 +55,6 @@
         } catch (err) {
             error = "Something went wrong";
         }
-        
         loading = false;
     }
 </script>
@@ -70,11 +63,10 @@
 
 <main class="container">
     <h1>Register !!</h1>
-    
     <form on:submit={handleSubmit}>
         <input type="text" placeholder="Username" bind:value={username} required>
         <input type="email" placeholder="Email" bind:value={email} required>
-        <input type="password" placeholder="Password (min 8 chars, 1 uppercase, 1 special char)" bind:value={password} required>
+        <input type="password" placeholder="Password" bind:value={password} required>
         <input type="password" placeholder="Confirm Password" bind:value={confirmPassword} required>
         
         <div class="password-hints">
@@ -85,16 +77,13 @@
                 <li class:valid={/[!@#$%^&*(),.?":{}|<>]/.test(password)}>✓ One special character (!@#$%^&* etc.)</li>
             </ul>
         </div>
-        
-        {#if error}
-            <p class="error">{error}</p>
-        {/if}
-        
+            {#if error}
+                <p class="error">{error}</p>
+            {/if}
         <button type="submit" disabled={loading}>
             {loading ? 'Creating account...' : 'Register'}
         </button>
     </form>
-    
     <p>Already have an account? <a href="/login">Login here</a></p>
 </main>
 
