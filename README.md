@@ -2,11 +2,13 @@
 
 I've made a IMDB copy-project, where you can find movies to watch ect !! This projeck is made using svelte as my frontend and bakcend, whilst i am using mairadb as my database. 
 
-this website is made for people looking for more movies to watch, or just want somehtign random playing in the background. you can randomise a movie or search for anthing. as someone who has trouble or struggle to find somehtign to watch, this website works perfect ofr me !! 
+this website is made for people looking for more movies to watch, or just want somehtign random playing in the background. you can randomise a movie or search for anthing. as someone who has trouble or struggle to find something to watch, this website is perfect !! 
 
 - [IMDB project](#IMDB-project)
   - [Prerequisits](#prerequisits)
   - [How to run??](#how-to-run-)
+  - [Other](#other)
+
     
 
 
@@ -87,11 +89,9 @@ And start the development server:
 npm run dev 
 ```
 
-
-
 ## Other 
 
-To show how my project is built i've made a system sketch 
+To show how my project is built i've made a system sketch: 
 
 ```mermaid
 graph TD
