@@ -19,7 +19,7 @@ export async function POST({ request }) {
         console.error('Insert error:', error);
         return json({ error: 'Failed to register user' }, { status: 500 });
     }
-}s
+}
 
 
 

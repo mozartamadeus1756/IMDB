@@ -11,7 +11,6 @@
 
     async function handleLogin(event) {
         event.preventDefault();
-        error = '';
         loading = true;
 
         try {
@@ -26,22 +25,22 @@
                 goto('/main');
             } else {
                 const data = await response.json();
-                error = data.error || 'Login failed';
+                error = data.error;
             }
         } catch (err) {
-            error = 'Something went wrong';
+            error = 'somthings wrong??';
         }
         
         loading = false;
     }
     
-    // let users = '';
+let users = '';
 
-    // onMount(async () => {
-    //     const res = await fetch('/api/db/register');
-    //     users = await res.json();
-    //     console.log(users); 
-    // });
+onMount(async () => {
+    const res = await fetch('/api/db/register');
+    users = await res.json();
+    console.log(users); 
+});
 
 </script>
 

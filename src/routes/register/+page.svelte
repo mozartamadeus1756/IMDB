@@ -8,36 +8,15 @@
     let confirmPassword = '';
     let error = '';
     let loading = false;
-    
-        // function validatePassword(password) {
-        //     const hasUppercase = /[A-Z]/.test(password) ;
-        //     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-        //     const hasMinLength = password.length >= 8;
-            
-        //     if (!hasMinLength) {
-        //         return "Password must be at least 8 characters long";
-        //     }
-        //     if (!hasUppercase) {
-        //         return "Password must contain at least one uppercase letter (A-Z)";
-        //     }
-        //     if (!hasSpecialChar) {
-        //         return "Password must contain at least one special character (!@#$%^&* etc.)";
-        //     } 
-        //     return null; 
-        // }
+
         
     async function handleSubmit(event) {
         event.preventDefault();
-        error = '';
-            // const passwordError = validatePassword(password);
-            // if (passwordError) {
-            //     error = passwordError;
-            //     return;
-            // }
         if (password !== confirmPassword) {
-            error = "Passwords do not match!";
+            error = "passwords do not match!!";
             return;
         }
+        
         loading = true;
         try {
             const response = await fetch('/api/db/register', {
@@ -50,10 +29,10 @@
                 goto('/login');
             } else {
                 const data = await response.json();
-                error = data.error || "Registration failed";
+                error = data.error;
             }
         } catch (err) {
-            error = "Something went wrong";
+            error = "somthing is wrong";
         }
         loading = false;
     }
@@ -68,15 +47,6 @@
         <input type="email" placeholder="Email" bind:value={email} required>
         <input type="password" placeholder="Password" bind:value={password} required>
         <input type="password" placeholder="Confirm Password" bind:value={confirmPassword} required>
-        
-            <!-- <div class="password-hints">
-                <p>Password must contain:</p>
-                <ul>
-                    <li class:valid={password.length >= 8}>✓ At least 8 characters</li>
-                    <li class:valid={/[A-Z]/.test(password)}>✓ One uppercase letter (A-Z)</li>
-                    <li class:valid={/[!@#$%^&*(),.?":{}|<>]/.test(password)}>✓ One special character (!@#$%^&* etc.)</li>
-                </ul>
-            </div> -->
             {#if error}
                 <p class="error">{error}</p>
             {/if}
@@ -157,35 +127,5 @@
 
     a:hover {
         text-decoration: underline;
-    }
-
-    .password-hints {
-        background: #f8f9fa;
-        padding: 15px;
-        border-radius: 4px;
-        border: 1px solid #e9ecef;
-    }
-
-    .password-hints p {
-        margin: 0 0 10px 0;
-        font-weight: bold;
-        color: #495057;
-    }
-
-    .password-hints ul {
-        margin: 0;
-        padding-left: 20px;
-        list-style: none;
-    }
-
-    .password-hints li {
-        margin: 5px 0;
-        color: #dc3545;
-        font-size: 14px;
-    }
-
-    .password-hints li.valid {
-        color: #28a745;
-        font-weight: bold;
     }
 </style>
