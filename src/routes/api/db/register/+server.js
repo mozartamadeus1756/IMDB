@@ -9,7 +9,7 @@ export async function POST({ request }) {
         if (!username || !email || !password) {
             return json({ error: 'Missing fields' }, { status: 400 });
         }
-        const hashedPassword = await bcrypt.hash(password, 10); // salt round 10 !!! very good 
+        const hashedPassword = await bcrypt.hash(password, 10); // salt round 10 !!! done  
         await query(
             'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
             [username, email, hashedPassword]

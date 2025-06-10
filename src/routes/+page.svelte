@@ -2,8 +2,6 @@
   import Navbar from "./components/Navbar.svelte";
   import BottomNav from "./components/BottomNav.svelte";
 
-
-  // Sample movie data - you can replace with your actual data
   const movies = [
     { title: "Movie of the day" },
     { title: "Movie of the day" },
@@ -32,7 +30,7 @@
   max-width: 100%;
   margin: 0 auto;
   padding: 20px;
-  height: calc(100vh - 130px); /* Accounts for top navbar and bottom navbar */
+  height: calc(100vh - 130px); 
   display: flex;
   align-items: center;
 }

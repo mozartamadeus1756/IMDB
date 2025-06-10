@@ -2,7 +2,6 @@
 import 'dotenv/config';
 import mariadb from 'mariadb';
 
-// Create connection pool
 const pool = mariadb.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
