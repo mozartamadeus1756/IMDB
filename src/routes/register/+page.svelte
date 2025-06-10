@@ -43,10 +43,10 @@
 <main class="container">
     <h1>Register !!</h1>
     <form on:submit={handleSubmit}>
-        <input type="text" placeholder="Username" bind:value={username} required>
-        <input type="email" placeholder="Email" bind:value={email} required>
-        <input type="password" placeholder="Password" bind:value={password} required>
-        <input type="password" placeholder="Confirm Password" bind:value={confirmPassword} required>
+        <input type="text" placeholder="Username" bind:value={username} required aria-label="Username">
+        <input type="email" placeholder="Email" bind:value={email} required aria-label="Email">
+        <input type="password" placeholder="Password" bind:value={password} required aria-label="Password">
+        <input type="password" placeholder="Confirm Password" bind:value={confirmPassword} require aria-label="Confirm Password">
             {#if error}
                 <p class="error">{error}</p>
             {/if}

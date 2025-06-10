@@ -50,9 +50,9 @@ onMount(async () => {
     <h1>Welcome back!!</h1>
     
     <form on:submit={handleLogin}>
-        <input type="text" placeholder="Username" bind:value={username} required>
-        <input type="email" placeholder="Email" bind:value={email} required>
-        <input type="password" placeholder="Password" bind:value={password} required>
+        <input type="text" placeholder="Username" bind:value={username} required aria-label="Username">
+        <input type="email" placeholder="Email" bind:value={email} required aria-label="Email">
+        <input type="password" placeholder="Password" bind:value={password} required aria-label="Password">
         
         {#if error}
             <p class="error">{error}</p>
