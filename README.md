@@ -192,10 +192,7 @@ graph TD
     class F2,H1 fileLayer
 ```
 
-
-
-
-
+Later, for deployment i've made this risk anlalysis of my website, in case anything goes worng or i get attacked so and so ..
 
 
 

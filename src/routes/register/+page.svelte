@@ -9,31 +9,31 @@
     let error = '';
     let loading = false;
     
-    function validatePassword(password) {
-        const hasUppercase = /[A-Z]/.test(password) ;
-        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-        const hasMinLength = password.length >= 8;
+        // function validatePassword(password) {
+        //     const hasUppercase = /[A-Z]/.test(password) ;
+        //     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        //     const hasMinLength = password.length >= 8;
+            
+        //     if (!hasMinLength) {
+        //         return "Password must be at least 8 characters long";
+        //     }
+        //     if (!hasUppercase) {
+        //         return "Password must contain at least one uppercase letter (A-Z)";
+        //     }
+        //     if (!hasSpecialChar) {
+        //         return "Password must contain at least one special character (!@#$%^&* etc.)";
+        //     } 
+        //     return null; 
+        // }
         
-        if (!hasMinLength) {
-            return "Password must be at least 8 characters long";
-        }
-        if (!hasUppercase) {
-            return "Password must contain at least one uppercase letter (A-Z)";
-        }
-        if (!hasSpecialChar) {
-            return "Password must contain at least one special character (!@#$%^&* etc.)";
-        }
-        return null; 
-    }
-    
     async function handleSubmit(event) {
         event.preventDefault();
         error = '';
-        const passwordError = validatePassword(password);
-        if (passwordError) {
-            error = passwordError;
-            return;
-        }
+            // const passwordError = validatePassword(password);
+            // if (passwordError) {
+            //     error = passwordError;
+            //     return;
+            // }
         if (password !== confirmPassword) {
             error = "Passwords do not match!";
             return;
@@ -69,14 +69,14 @@
         <input type="password" placeholder="Password" bind:value={password} required>
         <input type="password" placeholder="Confirm Password" bind:value={confirmPassword} required>
         
-        <div class="password-hints">
-            <p>Password must contain:</p>
-            <ul>
-                <li class:valid={password.length >= 8}>✓ At least 8 characters</li>
-                <li class:valid={/[A-Z]/.test(password)}>✓ One uppercase letter (A-Z)</li>
-                <li class:valid={/[!@#$%^&*(),.?":{}|<>]/.test(password)}>✓ One special character (!@#$%^&* etc.)</li>
-            </ul>
-        </div>
+            <!-- <div class="password-hints">
+                <p>Password must contain:</p>
+                <ul>
+                    <li class:valid={password.length >= 8}>✓ At least 8 characters</li>
+                    <li class:valid={/[A-Z]/.test(password)}>✓ One uppercase letter (A-Z)</li>
+                    <li class:valid={/[!@#$%^&*(),.?":{}|<>]/.test(password)}>✓ One special character (!@#$%^&* etc.)</li>
+                </ul>
+            </div> -->
             {#if error}
                 <p class="error">{error}</p>
             {/if}
