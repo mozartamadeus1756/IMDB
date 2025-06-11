@@ -52,51 +52,6 @@
             isLoading = false;
         }
     }
-
-
-//     import BackButton from "../components/BackButton.svelte";
-//     import { onMount } from 'svelte';
-//     import { goto } from '$app/navigation';
-
-//     let username = '';
-//     let email = '';
-//     let password = '';
-//     let error = '';
-//     let loading = false;
-
-//     async function handleLogin(event) {
-//         event.preventDefault();
-//         loading = true;
-
-//         try {
-//             const response = await fetch('/db/login', {
-//                 method: 'POST',
-//                 headers: { 'Content-Type': 'application/json' },
-//                 body: JSON.stringify({ username, email, password })
-//             });
-
-//             if (response.ok) {
-//                 const data = await response.json();
-//                 goto('/main');
-//             } else {
-//                 const data = await response.json();
-//                 error = data.error;
-//             }
-//         } catch (err) {
-//             error = 'somthings wrong??';
-//         }
-        
-//         loading = false;
-//     }
-    
-// let users = '';
-
-// onMount(async () => {
-//     const res = await fetch('/db/register');
-//     users = await res.json();
-//     console.log(users); 
-// });
-
 </script>
 
 <BackButton />
@@ -109,12 +64,12 @@
         <input type="email" placeholder="Email" bind:value={email} required aria-label="Email">
         <input type="password" placeholder="Password" bind:value={password} required aria-label="Password">
         
-        {#if error}
-            <p class="error">{error}</p>
+        {#if errorMessage}
+            <p class="error">{errorMessage}</p>
         {/if}
         
-        <button type="submit" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
+        <button type="submit" disabled={isLoading}>
+            {isLoading ? 'Logging in...' : 'Login'}
         </button>
     </form>
     

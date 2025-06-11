@@ -48,65 +48,30 @@
             isLoading = false;
         }
     }
-
-    // import BackButton from "../components/BackButton.svelte";
-    // import { goto } from '$app/navigation';
-
-    // let username = '';
-    // let email = '';
-    // let password = '';
-    // let confirmPassword = '';
-    // let error = '';
-    // let loading = false;
-
-        
-    // async function handleSubmit(event) {
-    //     event.preventDefault();
-    //     if (password !== confirmPassword) {
-    //         error = "passwords do not match!!";
-    //         return;
-    //     }
-        
-    //     loading = true;
-    //     try {
-    //         const response = await fetch('/db/register', {
-    //             method: 'POST',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify({ username, email, password })
-    //         });
-            
-    //         if (response.ok) {
-    //             goto('/login');
-    //         } else {
-    //             const data = await response.json();
-    //             error = data.error;
-    //         }
-    //     } catch (err) {
-    //         error = "somthing is wrong";
-    //     }
-    //     loading = false;
-    // }
 </script>
 
 <BackButton />
 
 <main class="container">
     <h1>Register !!</h1>
+    
     <form on:submit={handleSubmit}>
         <input type="text" placeholder="Username" bind:value={username} required aria-label="Username">
         <input type="email" placeholder="Email" bind:value={email} required aria-label="Email">
         <input type="password" placeholder="Password" bind:value={password} required aria-label="Password">
-        <input type="password" placeholder="Confirm Password" bind:value={confirmPassword} require aria-label="Confirm Password">
-            {#if error}
-                <p class="error">{error}</p>
-            {/if}
-        <button type="submit" disabled={loading}>
-            {loading ? 'Creating account...' : 'Register'}
+        <input type="password" placeholder="Confirm Password" bind:value={confirmPassword} required aria-label="Confirm Password">
+        
+        {#if errorMessage}
+            <p class="error">{errorMessage}</p>
+        {/if}
+        
+        <button type="submit" disabled={isLoading}>
+            {isLoading ? 'Creating account...' : 'Register'}
         </button>
     </form>
+    
     <p>Already have an account? <a href="/login">Login here</a></p>
 </main>
-
 <style>
     .container {
         display: flex;
