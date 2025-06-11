@@ -18,7 +18,7 @@
         if (!userId || !movie.id) return;
         
         try {
-            const response = await fetch('/api/db/favorites/check', {
+            const response = await fetch('/db/favorites/check', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -45,7 +45,7 @@
         isLoading = true;
         
         try {
-            const endpoint = isFavorite ? '/api/db/favorites/remove' : '/api/db/favorites/add';
+            const endpoint = isFavorite ? '/db/favorites/remove' : '/db/favorites/add';
 
             const response = await fetch(endpoint, {
                 method: 'POST',
