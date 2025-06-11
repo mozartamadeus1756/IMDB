@@ -100,16 +100,15 @@ IMDB/
 │   └── routes/
 │       ├── +page.svelte                    # Homepage
 │       ├── db/
-│       │   └── db/
-│       │       ├── login/
-│       │       │   └── +server.js          # Login API
-│       │       ├── register/
-│       │       │   └── +server.js          # Register API
-│       │       └── favorites/
-│       │           ├── add/+server.js      # Add favorite
-│       │           ├── remove/+server.js   # Remove favorite
-│       │           ├── check/+server.js    # Check favorite
-│       │           └── get/+server.js      # Get favorites
+│       │    ├── login/
+│       │    │   └── +server.js             # Login API
+│       │    ├── register/
+│       │    │   └── +server.js             # Register API
+│       │    └── favorites/
+│       │         ├── add/+server.js        # Add favorite
+│       │         ├── remove/+server.js     # Remove favorite
+│       │         ├── check/+server.js      # Check favorite
+│       │         └── get/+server.js        # Get favorites
 │       ├── components/
 │       │   ├── MovieCard.svelte            # Movie display component
 │       │   ├── Navbar.svelte               # Navigation
