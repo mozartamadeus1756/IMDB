@@ -6,36 +6,86 @@
     let email = '';
     let password = '';
     let confirmPassword = '';
-    let error = '';
-    let loading = false;
-
-        
+    let isLoading = false;
+    let errorMessage = '';
+    
     async function handleSubmit(event) {
         event.preventDefault();
+        errorMessage = '';
+        
         if (password !== confirmPassword) {
-            error = "passwords do not match!!";
+            errorMessage = "Passwords do not match!";
             return;
         }
         
-        loading = true;
         try {
-            const response = await fetch('/db/register', {
+            isLoading = true;
+            
+            // Bruk Azure Data API til å legge til bruker
+            const res = await fetch('/data-api/rest/users', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, email, password })
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    username: username,
+                    email: email, 
+                    password: password // Merk: ikke hashet i denne enkle versjonen
+                }) 
             });
             
-            if (response.ok) {
+            if (res.ok) {
+                alert('Registration successful! Please login.');
                 goto('/login');
             } else {
-                const data = await response.json();
-                error = data.error;
+                const errorData = await res.json();
+                errorMessage = errorData.message || "Registration failed. User might already exist.";
             }
-        } catch (err) {
-            error = "somthing is wrong";
+        } catch (error) {
+            console.error("Registration error:", error);
+            errorMessage = "Something went wrong. Please try again later.";
+        } finally {
+            isLoading = false;
         }
-        loading = false;
     }
+
+    // import BackButton from "../components/BackButton.svelte";
+    // import { goto } from '$app/navigation';
+
+    // let username = '';
+    // let email = '';
+    // let password = '';
+    // let confirmPassword = '';
+    // let error = '';
+    // let loading = false;
+
+        
+    // async function handleSubmit(event) {
+    //     event.preventDefault();
+    //     if (password !== confirmPassword) {
+    //         error = "passwords do not match!!";
+    //         return;
+    //     }
+        
+    //     loading = true;
+    //     try {
+    //         const response = await fetch('/db/register', {
+    //             method: 'POST',
+    //             headers: { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify({ username, email, password })
+    //         });
+            
+    //         if (response.ok) {
+    //             goto('/login');
+    //         } else {
+    //             const data = await response.json();
+    //             error = data.error;
+    //         }
+    //     } catch (err) {
+    //         error = "somthing is wrong";
+    //     }
+    //     loading = false;
+    // }
 </script>
 
 <BackButton />

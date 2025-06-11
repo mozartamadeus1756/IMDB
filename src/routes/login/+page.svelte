@@ -1,46 +1,101 @@
 <script>
     import BackButton from "../components/BackButton.svelte";
-    import { onMount } from 'svelte';
     import { goto } from '$app/navigation';
+    import { browser } from '$app/environment';
 
     let username = '';
     let email = '';
     let password = '';
-    let error = '';
-    let loading = false;
+    let isLoading = false;
+    let errorMessage = '';
 
     async function handleLogin(event) {
         event.preventDefault();
-        loading = true;
+        errorMessage = '';
+        isLoading = true;
 
         try {
-            const response = await fetch('/db/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, email, password })
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                goto('/main');
+            // Hent bruker fra Azure Data API - sjekk både username og email
+            const res = await fetch(`/data-api/rest/users?$filter=username eq '${username}' and email eq '${email}'`);
+            
+            if (res.ok) {
+                const data = await res.json();
+                
+                if (data.value && data.value.length > 0) {
+                    const user = data.value[0];
+                    
+                    // Enkel passord-sjekk (ikke hashet i denne versjonen)
+                    if (password === user.password) {
+                        if (browser) {
+                            localStorage.setItem('user', JSON.stringify({
+                                id: user.user_id,
+                                username: user.username,
+                                email: user.email
+                            }));
+                        }
+                        console.log("Login successful");
+                        alert('Login successful');
+                        goto('/main'); 
+                    } else {
+                        errorMessage = 'Invalid password';
+                    }
+                } else {
+                    errorMessage = 'User not found';
+                }
             } else {
-                const data = await response.json();
-                error = data.error;
+                errorMessage = 'Failed to check user credentials';
             }
-        } catch (err) {
-            error = 'somthings wrong??';
+        } catch (error) {
+            console.error('Login error:', error);
+            errorMessage = 'Something went wrong. Please try again.';
+        } finally {
+            isLoading = false;
         }
-        
-        loading = false;
     }
-    
-let users = '';
 
-onMount(async () => {
-    const res = await fetch('/db/register');
-    users = await res.json();
-    console.log(users); 
-});
+
+//     import BackButton from "../components/BackButton.svelte";
+//     import { onMount } from 'svelte';
+//     import { goto } from '$app/navigation';
+
+//     let username = '';
+//     let email = '';
+//     let password = '';
+//     let error = '';
+//     let loading = false;
+
+//     async function handleLogin(event) {
+//         event.preventDefault();
+//         loading = true;
+
+//         try {
+//             const response = await fetch('/db/login', {
+//                 method: 'POST',
+//                 headers: { 'Content-Type': 'application/json' },
+//                 body: JSON.stringify({ username, email, password })
+//             });
+
+//             if (response.ok) {
+//                 const data = await response.json();
+//                 goto('/main');
+//             } else {
+//                 const data = await response.json();
+//                 error = data.error;
+//             }
+//         } catch (err) {
+//             error = 'somthings wrong??';
+//         }
+        
+//         loading = false;
+//     }
+    
+// let users = '';
+
+// onMount(async () => {
+//     const res = await fetch('/db/register');
+//     users = await res.json();
+//     console.log(users); 
+// });
 
 </script>
 
