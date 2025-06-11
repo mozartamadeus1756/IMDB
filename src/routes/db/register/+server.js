@@ -1,4 +1,4 @@
-// routes/api/+server.js
+// routes/db/register/+server.js
 import { query } from '$lib/db/mariadb';
 import { json } from '@sveltejs/kit';
 import bcrypt from 'bcrypt';

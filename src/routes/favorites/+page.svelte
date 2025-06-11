@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     import BackButtonMain from '../components/BackButtonMain.svelte';
     import MovieCard from '../components/MovieCard.svelte';
     import { onMount } from 'svelte';
@@ -12,7 +12,7 @@
     onMount(async () => {
         // Get user from localStorage
         user = getCurrentUser();
-        
+        // 
         if (user) {
             await loadFavorites();
         } else {
@@ -25,7 +25,7 @@
         try {
             const userId = getUserId();
             
-            const response = await fetch('/api/db/favorites/get', {
+            const response = await fetch('/db/favorites/get', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -164,4 +164,4 @@
             gap: 1rem;
         }
     }
-</style>
+</style> -->

@@ -1,18 +1,18 @@
 <script>
-    import { getUserId, logout } from '$lib/stores/user.js';
-    import { onMount } from 'svelte';
+    // import { getUserId, logout } from '$lib/stores/user.js';
+    // import { onMount } from 'svelte';
 
-    let userId = null;
+    // let userId = null;
 
-    onMount(() => {
-        userId = getUserId();
-    });
+    // onMount(() => {
+    //     userId = getUserId();
+    // });
 
-    function handleLogout() {
-        logout();
-        userId = null;
-        window.location.href = '/';
-    }
+    // function handleLogout() {
+    //     logout();
+    //     userId = null;
+    //     window.location.href = '/';
+    // }
 </script>
 
 <nav>
@@ -24,11 +24,11 @@
             <li><a href="/favorites">Favorites</a></li>  
         </ul>
 
-        {#if userId}
+        <!-- {#if userId}
             <ul>
                 <li><button class="link-button" on:click={handleLogout}>Logout</button></li>
             </ul>
-        {/if}
+        {/if} -->
     </div>
 </nav>
 
@@ -65,7 +65,7 @@
         text-decoration: underline;
     }
 
-    .link-button {
+    /* .link-button {
         background: none;
         border: none;
         color: white;
@@ -77,5 +77,5 @@
 
     .link-button:hover {
         text-decoration: underline;
-    }
+    } */
 </style>

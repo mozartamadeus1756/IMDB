@@ -99,7 +99,7 @@ IMDB/
 │   │   │   └── mariadb.js     
 │   └── routes/
 │       ├── +page.svelte                    # Homepage
-│       ├── api/
+│       ├── db/
 │       │   └── db/
 │       │       ├── login/
 │       │       │   └── +server.js          # Login API

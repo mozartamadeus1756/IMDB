@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     import { getUserId } from '$lib/stores/user.js';
     import { onMount } from 'svelte';
 
@@ -172,4 +172,4 @@
     .meta p {
         margin: 0.3rem 0;
     }
-</style>
+</style> -->
