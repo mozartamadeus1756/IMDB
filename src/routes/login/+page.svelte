@@ -19,7 +19,7 @@
             });
             if (response.ok) {
                 const data = await response.json();
-                goto('/main');s
+                goto('/main');
             } else {
                 const data = await response.json();
                 error = data.error;

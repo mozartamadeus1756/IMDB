@@ -17,13 +17,28 @@ export async function POST({ request }) {
             return json({ error: 'user not found' }, { status: 401 }); 
         }  
         // ksjekke passordet !! 
-        const passwordMatch = await bcrypt.compare(password, users.password.toString());
-        if(!passwordMatch) {
-            return res.status(401).json({
-                success: false,
-                message: 'invalid !! '
-            });
+        //const passwordMatch = await bcrypt.compare(password, users.password.toString());
+        const passwordMatch = await bcrypt.compare(password, user.password.toString());
+
+        // ikke rikitg svelte format 
+        
+        // if(!passwordMatch) {
+        //     return res.status(401).json({
+        //         success: false,
+        //         message: 'invalid !! '
+        //     });
+        // }
+
+        if (!passwordMatch) {
+            return json({ error: 'invalid password' }, { status: 401 });
         }
+
+        return json({ 
+            success: true, 
+            message: 'login successful',
+            user: { id: user.id, username: user.username, email: user.email }
+        }, { status: 200 });
+        
     } catch (err) { 
         console.error('login error:', err); 
         return json({ error: 'server error' }, { status: 500 }); 
