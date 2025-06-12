@@ -1,5 +1,6 @@
 <script>
     import BackButton from "../components/BackButton.svelte";
+    import { goto } from "$app/navigation";
 
     let loading = false;
     let error = '';
@@ -11,7 +12,7 @@
     async function handleLogin(event) {
         event.preventDefault();
         try {
-            const response = await fetch('/db/login', {
+            const response = await fetch('/db/loginm', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, email, password })
@@ -28,7 +29,6 @@
     }
         loading = false;
     }
-
 </script>
 
 <BackButton />
@@ -37,9 +37,9 @@
     <h1>Welcome back!!</h1>
     
     <form on:submit={handleLogin}>
-        <input type="text" placeholder="Username" bind:value={username} required aria-label="Username">
-        <input type="email" placeholder="Email" bind:value={email} required aria-label="Email">
-        <input type="password" placeholder="Password" bind:value={password} required aria-label="Password">
+        <input class="text" type="text" placeholder="Username" bind:value={username} required aria-label="Username">
+        <input class="text" type="email" placeholder="Email" bind:value={email} required aria-label="Email">
+        <input class="text" type="password" placeholder="Password" bind:value={password} required aria-label="Password">
         
         {#if error}
             <p class="error">{error}</p>
@@ -81,7 +81,7 @@
 
     input {
         padding: 12px;
-        border: 1px solid #ddd;
+        border: 1px solid #000000;
         border-radius: 4px;
         font-size: 16px;
     }
@@ -109,6 +109,10 @@
         color: #e74c3c;
         margin: 0;
         text-align: center;
+    }
+
+    .text {
+        color:#000000;
     }
 
     p {

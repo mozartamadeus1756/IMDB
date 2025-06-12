@@ -12,6 +12,7 @@ export async function POST({ request }) {
             [username, email]
         ); 
 
+        users = users[0]
         // ksjekke passordet !! 
         const passwordMatch = await bcrypt.compare(password, users.password.toString())
 
@@ -25,5 +26,5 @@ export async function POST({ request }) {
         console.error('Login error:', err); 
         return json({ error: 'Server error' }, { status: 500 }); 
     } 
-    
+
 }
