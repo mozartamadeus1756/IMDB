@@ -1,0 +1,6 @@
+CREATE TABLE users (
+    user_id INT IDENTITY(1,1) PRIMARY KEY,
+    username NVARCHAR(255) NOT NULL,
+    email NVARCHAR(255) UNIQUE NOT NULL,
+    password NVARCHAR(MAX) NOT NULL
+);
