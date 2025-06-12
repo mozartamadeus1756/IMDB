@@ -37,7 +37,7 @@ export async function POST({ request }) {
             success: true, 
             message: 'login successful',
             user: { id: user.id, username: user.username, email: user.email }
-        }, { status: 200 });
+        }, { status: 200 }); // sender ikke passordet får å være tryggere !! 
         
     } catch (err) { 
         console.error('login error:', err); 
