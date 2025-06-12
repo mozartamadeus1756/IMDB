@@ -34,6 +34,7 @@
         }
         loading = false;
     }
+
 </script>
 
 <BackButton />
@@ -58,6 +59,8 @@
     
     <p>Already have an account? <a href="/login">Login here</a></p>
 </main>
+
+
 <style>
     .container {
         display: flex;
