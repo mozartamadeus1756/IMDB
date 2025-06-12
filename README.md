@@ -9,9 +9,7 @@ this website is made for people looking for more movies to watch, or just want s
   - [How to run??](#how-to-run-)
   - [Other](#other)
 
-    
-
-
+  
 ### Prerequisites
 To run and use my application on your own you will need a few prerequisites.
 
@@ -34,24 +32,26 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 nvm install 22
 ```
 
-To add and manage passwords you'll need a database, you can decide on what to use, but im using **mariadb**, and this is how you install it:
+Now, you want to clone the repo over to your own: 
 
 ```bash
-# mariadb install 
-brew install mariadb
+# clone repo
+git clone https://github.com/mozartamadeus1756/IMDB-drift.git
+cd imdb-drift
+
 ```
 
-Now, in your database of choice, you want to make this required table for the login and register pages to function:
+For us to connect to the database we will make in Azure, in the SQL Database resource, we have to add our env connections too:
 
-```sql
--- Users table
-CREATE TABLE users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255),
-    email VARCHAR(255),
-    password BLOB
-);
+```env
+DB_SERVER='imdb-database-server.database.windows.net' 
+DB_USER='database-user-or-admin-user'
+DB_PASSWORD='database-password'
+DB_NAME='database-name'
 ```
+
+Now that thats all set, we also have to add a `.github` and `workflows` file under eachother:
+
 
 This is where our registered users are placed, and the passwords are crypted and secured. 
 
