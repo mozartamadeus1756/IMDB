@@ -86,6 +86,11 @@
         font-size: 16px;
     }
 
+    input::placeholder {
+        color:#000000;
+        font-weight: bold;
+    }
+
     button {
         padding: 12px;
         background: #007bff;
@@ -109,10 +114,6 @@
         color: #e74c3c;
         margin: 0;
         text-align: center;
-    }
-
-    .text {
-        color:#000000;
     }
 
     p {

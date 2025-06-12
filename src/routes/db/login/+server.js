@@ -12,10 +12,12 @@ export async function POST({ request }) {
             [username, email]
         ); 
 
-        users = users[0]
+        const user = users[0]
+        if (!user || !user.password) { 
+            return json({ error: 'user not found' }, { status: 401 }); 
+        }  
         // ksjekke passordet !! 
-        const passwordMatch = await bcrypt.compare(password, users.password.toString())
-
+        const passwordMatch = await bcrypt.compare(password, users.password.toString());
         if(!passwordMatch) {
             return res.status(401).json({
                 success: false,
@@ -23,8 +25,8 @@ export async function POST({ request }) {
             });
         }
     } catch (err) { 
-        console.error('Login error:', err); 
-        return json({ error: 'Server error' }, { status: 500 }); 
+        console.error('login error:', err); 
+        return json({ error: 'server error' }, { status: 500 }); 
     } 
 
 }
