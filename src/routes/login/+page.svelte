@@ -12,7 +12,7 @@
     async function handleLogin(event) {
         event.preventDefault();
         try {
-            const response = await fetch('/db/loginm', {
+            const response = await fetch('/db/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, email, password })
