@@ -1,5 +1,5 @@
 // bakcend routeijg
-import { query } from '$lib/db/mariadb';
+import { query } from '$lib/db/azuresql';
 import { json } from '@sveltejs/kit';
 import bcrypt from 'bcrypt';
 
