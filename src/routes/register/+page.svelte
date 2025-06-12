@@ -16,6 +16,7 @@
             error = "passwords do not match!!";
             return;
         }
+        
         try {
             const response = await fetch('/db/register', {
                 method: 'POST',
@@ -30,7 +31,7 @@
                 error = data.error;
             }
         } catch (err) {
-            error = "somthing is wrong";
+            error = "somthing is wrong !!";
         }
         loading = false;
     }

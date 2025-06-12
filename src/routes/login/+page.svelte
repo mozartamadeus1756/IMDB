@@ -4,7 +4,30 @@
     let loading = false;
     let error = '';
 
-    
+    let username = '';
+    let email = ''; 
+    let password = '';
+
+    async function handleLogin(event) {
+        event.preventDefault();
+        try {
+            const response = await fetch('/db/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, email, password })
+            });
+            if (response.ok) {
+                const data = await response.json();
+                goto('/main');s
+            } else {
+                const data = await response.json();
+                error = data.error;
+            }
+        } catch (err) {
+        error = 'somethings wrong??';
+    }
+        loading = false;
+    }
 
 </script>
 
