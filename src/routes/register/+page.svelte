@@ -1,53 +1,10 @@
 <script>
     import BackButton from "../components/BackButton.svelte";
-    import { goto } from '$app/navigation';
+    //import { goto } from '$app/navigation';
 
-    let username = '';
-    let email = '';
-    let password = '';
-    let confirmPassword = '';
     let isLoading = false;
     let errorMessage = '';
-    
-    async function handleSubmit(event) {
-        event.preventDefault();
-        errorMessage = '';
-        
-        if (password !== confirmPassword) {
-            errorMessage = "Passwords do not match!";
-            return;
-        }
-        
-        try {
-            isLoading = true;
-            
-            // Bruk Azure Data API til å legge til bruker
-            const res = await fetch('/data-api/rest/users', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ 
-                    username: username,
-                    email: email, 
-                    password: password // Merk: ikke hashet i denne enkle versjonen
-                }) 
-            });
-            
-            if (res.ok) {
-                alert('Registration successful! Please login.');
-                goto('/login');
-            } else {
-                const errorData = await res.json();
-                errorMessage = errorData.message || "Registration failed. User might already exist.";
-            }
-        } catch (error) {
-            console.error("Registration error:", error);
-            errorMessage = "Something went wrong. Please try again later.";
-        } finally {
-            isLoading = false;
-        }
-    }
+
 </script>
 
 <BackButton />

@@ -37,15 +37,6 @@
           "role": "anonymous"
         }
       ]
-    },
-    "favorites": {
-      "source": "favorites",
-      "permissions": [
-        {
-          "actions": ["create", "read", "delete"],
-          "role": "anonymous"
-        }
-      ]
     }
   }
 }

@@ -1,57 +1,8 @@
 <script>
     import BackButton from "../components/BackButton.svelte";
-    import { goto } from '$app/navigation';
-    import { browser } from '$app/environment';
 
-    let username = '';
-    let email = '';
-    let password = '';
     let isLoading = false;
     let errorMessage = '';
-
-    async function handleLogin(event) {
-        event.preventDefault();
-        errorMessage = '';
-        isLoading = true;
-
-        try {
-            // Hent bruker fra Azure Data API - sjekk både username og email
-            const res = await fetch(`/data-api/rest/users?$filter=username eq '${username}' and email eq '${email}'`);
-            
-            if (res.ok) {
-                const data = await res.json();
-                
-                if (data.value && data.value.length > 0) {
-                    const user = data.value[0];
-                    
-                    // Enkel passord-sjekk (ikke hashet i denne versjonen)
-                    if (password === user.password) {
-                        if (browser) {
-                            localStorage.setItem('user', JSON.stringify({
-                                id: user.user_id,
-                                username: user.username,
-                                email: user.email
-                            }));
-                        }
-                        console.log("Login successful");
-                        alert('Login successful');
-                        goto('/main'); 
-                    } else {
-                        errorMessage = 'Invalid password';
-                    }
-                } else {
-                    errorMessage = 'User not found';
-                }
-            } else {
-                errorMessage = 'Failed to check user credentials';
-            }
-        } catch (error) {
-            console.error('Login error:', error);
-            errorMessage = 'Something went wrong. Please try again.';
-        } finally {
-            isLoading = false;
-        }
-    }
 </script>
 
 <BackButton />

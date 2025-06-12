@@ -1,0 +1,1 @@
+// for å koble til dtabasen !! 
