@@ -1,10 +1,8 @@
 <script>
     import BackButton from "../components/BackButton.svelte";
 
-    let isLoading = false;
-    let errorMessage = '';
-
-
+    let loading = false;
+    let error = '';
 
 </script>
 
@@ -18,12 +16,12 @@
         <input type="email" placeholder="Email" bind:value={email} required aria-label="Email">
         <input type="password" placeholder="Password" bind:value={password} required aria-label="Password">
         
-        {#if errorMessage}
-            <p class="error">{errorMessage}</p>
+        {#if error}
+            <p class="error">{error}</p>
         {/if}
         
-        <button type="submit" disabled={isLoading}>
-            {isLoading ? 'Logging in...' : 'Login'}
+        <button type="submit" disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
         </button>
     </form>
     
