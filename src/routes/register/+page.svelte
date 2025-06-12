@@ -1,10 +1,39 @@
 <script>
     import BackButton from "../components/BackButton.svelte";
-    //import { goto } from '$app/navigation';
+    import { goto } from '$app/navigation';
 
-    let isLoading = false;
-    let errorMessage = '';
+    let loading = false;
+    let error = '';
 
+    let username = '';
+    let email = ''; 
+    let password = '';
+    let confirmPassword = ''; 
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        if (password !== confirmPassword) {
+            error = "passwords do not match!!";
+            return;
+        }
+        try {
+            const response = await fetch('/db/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, email, password })
+            });
+            
+            if (response.ok) {
+                goto('/login');
+            } else {
+                const data = await response.json();
+                error = data.error;
+            }
+        } catch (err) {
+            error = "somthing is wrong";
+        }
+        loading = false;
+    }
 </script>
 
 <BackButton />
@@ -18,12 +47,12 @@
         <input type="password" placeholder="Password" bind:value={password} required aria-label="Password">
         <input type="password" placeholder="Confirm Password" bind:value={confirmPassword} required aria-label="Confirm Password">
         
-        {#if errorMessage}
-            <p class="error">{errorMessage}</p>
+        {#if error}
+            <p class="error">{error}</p>
         {/if}
         
-        <button type="submit" disabled={isLoading}>
-            {isLoading ? 'Creating account...' : 'Register'}
+        <button type="submit" disabled={loading}>
+            {loading ? 'Creating account...' : 'Register'}
         </button>
     </form>
     
